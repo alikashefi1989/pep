@@ -14,6 +14,7 @@ import Filter from '../../components/filter';
 import LocationEntity from '../../models/entities/location';
 import CharacterEntity from '../../models/entities/character';
 import Pagination from '../../components/pagination';
+import PATH from '../../enum/path';
 
 const initialFilterValue: Record<string, string> = { name: "", type: "", dimension: "" }
 
@@ -58,7 +59,7 @@ const LocationsList: FC<{}> = () => {
                         {
                             data && data.locations && data.locations.results &&
                             data.locations.results.map((location: LocationEntity) => (
-                                <LocationItem key={location.id} onClick={() => navigate(`/locations/${location.id}`)}>
+                                <LocationItem key={location.id} onClick={() => navigate(`${PATH.LOCATIONS}/${location.id}`)}>
                                     <h4>Name: {location.name}</h4>
                                     <h5>Type: {location.type}</h5>
                                     <h5>Dimension: {location.dimension}</h5>
@@ -78,7 +79,7 @@ const LocationsList: FC<{}> = () => {
                                                 title={character.name}
                                                 onClick={(e: any) => {
                                                     e.stopPropagation()
-                                                    navigate(`/characters/${character.id}`)
+                                                    navigate(`${PATH.CHARACTERS}/${character.id}`)
                                                 }}
                                             />
                                         ))}

@@ -14,6 +14,7 @@ import Error from '../../components/error';
 import BackToList from '../../components/back-to-list';
 import CHARACTER_STATUS from '../../enum/character-status';
 import EpisodeEntity from '../../models/entities/episode';
+import PATH from '../../enum/path';
 
 const CharacterById: FC<{}> = () => {
     const { id } = useParams<string>()
@@ -74,7 +75,7 @@ const CharacterById: FC<{}> = () => {
                                 label={episode.episode}
                                 onClick={(e: any) => {
                                     e.stopPropagation()
-                                    navigate(`/episodes/${episode.id}`)
+                                    navigate(`${PATH.EPISODES}/${episode.id}`)
                                 }}
                             />
                         ))}

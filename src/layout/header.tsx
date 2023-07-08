@@ -2,6 +2,7 @@
 import { FC } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 import styled from '@emotion/styled'
+import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
@@ -11,7 +12,6 @@ import LightModeIcon from '@mui/icons-material/LightMode';
 // custom
 import useStore from '../state-management/store'
 import { Store } from '../models/store'
-import { useStyles } from '../configs/theme/theme'
 import routes from '../configs/routes';
 import RouteModel from '../models/route';
 
@@ -21,13 +21,12 @@ interface HeaderProps {
 
 const Header: FC<HeaderProps> = ({ height }) => {
     const darkMode = useStore<boolean>((store: Store) => store.darkMode)
-    const classes = useStyles({ darkMode })
     const { pathname } = useLocation()
     const setDarkMode = useStore<(darkMode: boolean) => void>((store: Store) => store.setDarkMode)
     const navigate = useNavigate()
 
     return (
-        <HeaderWrapper height={height} className={darkMode ? classes.headerDark : classes.headerLight}>
+        <HeaderWrapper height={height}>
             <Box sx={{ width: 300 }}>
                 <BottomNavigation showLabels={true} style={{ backgroundColor: 'transparent' }}>
                     {routes.filter((route: RouteModel) => route.isMenuItem).map(({ title, path, Icon }: RouteModel) => (
@@ -65,18 +64,23 @@ const returnItemColor = (darkMode: boolean, isActive: boolean): string => {
     return '#ffffff'
 }
 
-const HeaderWrapper = styled.div<HeaderProps>(({ height }) => ({
-    boxSizing: 'border-box',
-    padding: '10px',
-    margin: 0,
-    width: '100%',
-    height,
-    position: 'fixed',
-    left: 0,
-    right: 0,
-    top: 0,
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    zIndex: 3,
-}))
+const HeaderWrapper = styled.div<HeaderProps>(({ height }) => {
+    const theme = useTheme()
+    return {
+        boxSizing: 'border-box',
+        padding: '10px',
+        margin: 0,
+        width: '100%',
+        height,
+        position: 'fixed',
+        left: 0,
+        right: 0,
+        top: 0,
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        zIndex: 3,
+        backgroundColor: theme.palette.primary.contrastText,
+        color: theme.palette.primary.main,
+    }
+})

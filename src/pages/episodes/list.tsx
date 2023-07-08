@@ -14,6 +14,7 @@ import Filter from '../../components/filter';
 import EpisodeEntity from '../../models/entities/episode';
 import CharacterEntity from '../../models/entities/character';
 import Pagination from '../../components/pagination';
+import PATH from '../../enum/path';
 
 const initialFilterValue: Record<string, string> = { name: "", episode: "" }
 
@@ -58,7 +59,7 @@ const EpisodesList: FC<{}> = () => {
                         {
                             data && data.episodes && data.episodes.results &&
                             data.episodes.results.map((episode: EpisodeEntity) => (
-                                <EpisodeItem key={episode.id} onClick={() => navigate(`/episodes/${episode.id}`)}>
+                                <EpisodeItem key={episode.id} onClick={() => navigate(`${PATH.EPISODES}/${episode.id}`)}>
                                     <h4>Name: {episode.name}</h4>
                                     <h5>Episode: {episode.episode}</h5>
                                     <h5>Air Date: {episode.air_date}</h5>
@@ -73,7 +74,7 @@ const EpisodesList: FC<{}> = () => {
                                                 title={character.name}
                                                 onClick={(e: any) => {
                                                     e.stopPropagation()
-                                                    navigate(`/characters/${character.id}`)
+                                                    navigate(`${PATH.CHARACTERS}/${character.id}`)
                                                 }}
                                             />
                                         ))}

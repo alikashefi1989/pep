@@ -4,6 +4,7 @@ import styled from '@emotion/styled';
 import IconButton from '@mui/material/IconButton';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useNavigate } from 'react-router-dom';
+import PATH from '../enum/path';
 
 interface BackToListProps {
     entityName: 'Character' | 'Episode' | 'Location'
@@ -26,10 +27,10 @@ const BackToList: FC<BackToListProps> = ({ entityName }) => {
 export default BackToList
 
 const returnEntityBasePath = (entityName: BackToListProps['entityName']): string => {
-    if (entityName === 'Character') return '/characters'
-    if (entityName === 'Episode') return '/episodes'
-    if (entityName === 'Location') return '/locations'
-    return '/'
+    if (entityName === 'Character') return PATH.CHARACTERS
+    if (entityName === 'Episode') return PATH.EPISODES
+    if (entityName === 'Location') return PATH.LOCATIONS
+    return PATH.HOME
 }
 const BackToListWrapper = styled.div(() => ({
     boxSizing: 'border-box',

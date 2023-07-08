@@ -14,6 +14,7 @@ import Loading from '../../components/loading';
 import Error from '../../components/error';
 import BackToList from '../../components/back-to-list';
 import CharacterEntity from '../../models/entities/character';
+import PATH from '../../enum/path';
 
 const LocationById: FC<{}> = () => {
     const { id } = useParams<string>()
@@ -65,7 +66,7 @@ const LocationById: FC<{}> = () => {
                                     src={character.image}
                                     onClick={(e: any) => {
                                         e.stopPropagation()
-                                        navigate(`/characters/${character.id}`)
+                                        navigate(`${PATH.CHARACTERS}/${character.id}`)
                                     }}
                                 />
                             </Tooltip>

@@ -14,6 +14,7 @@ import Filter from '../../components/filter';
 import CharacterEntity from '../../models/entities/character';
 import Pagination from '../../components/pagination';
 import CHARACTER_STATUS from '../../enum/character-status';
+import PATH from '../../enum/path';
 
 const initialFilterValue: Record<string, string> = { name: "", status: "", species: "", type: "", gender: "" }
 
@@ -59,7 +60,7 @@ const CharactersList: FC<{}> = () => {
                         {
                             data && data.characters && data.characters.results &&
                             data.characters.results.map((character: CharacterEntity) => (
-                                <CharacterItem key={character.id} onClick={() => navigate(`/characters/${character.id}`)}>
+                                <CharacterItem key={character.id} onClick={() => navigate(`${PATH.CHARACTERS}/${character.id}`)}>
                                     <Avatar
                                         key={character.id}
                                         alt={character.id}

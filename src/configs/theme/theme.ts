@@ -1,6 +1,5 @@
 // module
-import { Theme, PaletteMode } from "@mui/material";
-import { makeStyles } from '@mui/styles';
+import { PaletteMode } from "@mui/material";
 
 const appTheme = (darkMode: boolean) => ({
     palette: {
@@ -27,26 +26,3 @@ const appTheme = (darkMode: boolean) => ({
 });;
 
 export default appTheme
-
-export const useStyles = makeStyles<Theme, { darkMode: boolean }>((theme: Theme) => ({
-    main: {
-        backgroundColor: theme.palette.primary.main,
-        color: theme.palette.primary.contrastText,
-    },
-    dark: {
-        backgroundColor: theme.palette.primary.dark,
-        color: theme.palette.primary.contrastText,
-    },
-    light: {
-        backgroundColor: theme.palette.primary.light,
-        color: theme.palette.primary.contrastText,
-    },
-    headerDark: {
-        backgroundColor: '#ffffff',
-        color: '#000000',
-    },
-    headerLight: {
-        backgroundColor: '#000000',
-        color: '#ffffff',
-    }
-}))
